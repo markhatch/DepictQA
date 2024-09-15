@@ -16,8 +16,9 @@ sentencepiece==0.1.99
 setuptools==65.5.1
 tensorboard==2.14.0
 timm==0.6.7
-torch==1.13.1
-torchvision==0.14.1
+torch==2.0.1  # Ensure this matches Colab's PyTorch version
+torchvision==0.15.2
 tqdm==4.64.1
 transformers==4.35.0
 uvicorn==0.27.1
+nvidia-tensorrt

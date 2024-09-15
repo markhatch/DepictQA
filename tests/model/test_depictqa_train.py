@@ -32,11 +32,12 @@ if __name__ == "__main__":
     }
     args = EasyDict(args)
 
-    img_embs = torch.rand((1, 25, 4096)).to(torch.float16).cuda()
-    img_A_embs = torch.rand((1, 25, 4096)).to(torch.float16).cuda()
-    img_B_embs = torch.rand((1, 25, 4096)).to(torch.float16).cuda()
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    img_embs = torch.rand((1, 25, 4096)).to(torch.float16).to(device)
+    img_A_embs = torch.rand((1, 25, 4096)).to(torch.float16).to(device)
+    img_B_embs = torch.rand((1, 25, 4096)).to(torch.float16).to(device)
     img_embs_list = [img_embs, img_A_embs, img_B_embs]
-    model = DepictQA(args, training=True).cuda()
+    model = DepictQA(args, training=True).to(device)
 
     roles = model.roles
     seps = model.seps
@@ -85,19 +86,19 @@ if __name__ == "__main__":
         token_part0 = model.tokenizer(
             text_part0, return_tensors="pt", add_special_tokens=False
         )
-        token_part0_ids = token_part0.input_ids.expand(1, -1).cuda()
+        token_part0_ids = token_part0.input_ids.expand(1, -1).to(device)
         token_part1 = model.tokenizer(
             text_part1, return_tensors="pt", add_special_tokens=False
         )
-        token_part1_ids = token_part1.input_ids.expand(1, -1).cuda()
+        token_part1_ids = token_part1.input_ids.expand(1, -1).to(device)
         token_part2 = model.tokenizer(
             text_part2, return_tensors="pt", add_special_tokens=False
         )
-        token_part2_ids = token_part2.input_ids.expand(1, -1).cuda()
+        token_part2_ids = token_part2.input_ids.expand(1, -1).to(device)
         token_part3 = model.tokenizer(
             text_part3, return_tensors="pt", add_special_tokens=False
         )
-        token_part3_ids = token_part3.input_ids.expand(1, -1).cuda()
+        token_part3_ids = token_part3.input_ids.expand(1, -1).to(device)
 
         embed_part0 = model.llm.model.model.embed_tokens(token_part0_ids)
         embed_part1 = model.llm.model.model.embed_tokens(token_part1_ids)
@@ -140,23 +141,23 @@ if __name__ == "__main__":
         token_part0 = model.tokenizer(
             text_part0, return_tensors="pt", add_special_tokens=False
         )
-        token_part0_ids = token_part0.input_ids.expand(1, -1).cuda()
+        token_part0_ids = token_part0.input_ids.expand(1, -1).to(device)
         token_part1 = model.tokenizer(
             text_part1, return_tensors="pt", add_special_tokens=False
         )
-        token_part1_ids = token_part1.input_ids.expand(1, -1).cuda()
+        token_part1_ids = token_part1.input_ids.expand(1, -1).to(device)
         token_part2 = model.tokenizer(
             text_part2, return_tensors="pt", add_special_tokens=False
         )
-        token_part2_ids = token_part2.input_ids.expand(1, -1).cuda()
+        token_part2_ids = token_part2.input_ids.expand(1, -1).to(device)
         token_part3 = model.tokenizer(
             text_part3, return_tensors="pt", add_special_tokens=False
         )
-        token_part3_ids = token_part3.input_ids.expand(1, -1).cuda()
+        token_part3_ids = token_part3.input_ids.expand(1, -1).to(device)
         token_part4 = model.tokenizer(
             text_part4, return_tensors="pt", add_special_tokens=False
         )
-        token_part4_ids = token_part4.input_ids.expand(1, -1).cuda()
+        token_part4_ids = token_part4.input_ids.expand(1, -1).to(device)
 
         embed_part0 = model.llm.model.model.embed_tokens(token_part0_ids)
         embed_part1 = model.llm.model.model.embed_tokens(token_part1_ids)
@@ -220,15 +221,15 @@ if __name__ == "__main__":
         token_part0 = model.tokenizer(
             text_part0, return_tensors="pt", add_special_tokens=False
         )
-        token_part0_ids = token_part0.input_ids.expand(1, -1).cuda()
+        token_part0_ids = token_part0.input_ids.expand(1, -1).to(device)
         token_part1 = model.tokenizer(
             text_part1, return_tensors="pt", add_special_tokens=False
         )
-        token_part1_ids = token_part1.input_ids.expand(1, -1).cuda()
+        token_part1_ids = token_part1.input_ids.expand(1, -1).to(device)
         token_part2 = model.tokenizer(
             text_part2, return_tensors="pt", add_special_tokens=False
         )
-        token_part2_ids = token_part2.input_ids.expand(1, -1).cuda()
+        token_part2_ids = token_part2.input_ids.expand(1, -1).to(device)
 
         embed_part0 = model.llm.model.model.embed_tokens(token_part0_ids)
         embed_part1 = model.llm.model.model.embed_tokens(token_part1_ids)
@@ -269,19 +270,19 @@ if __name__ == "__main__":
         token_part0 = model.tokenizer(
             text_part0, return_tensors="pt", add_special_tokens=False
         )
-        token_part0_ids = token_part0.input_ids.expand(1, -1).cuda()
+        token_part0_ids = token_part0.input_ids.expand(1, -1).to(device)
         token_part1 = model.tokenizer(
             text_part1, return_tensors="pt", add_special_tokens=False
         )
-        token_part1_ids = token_part1.input_ids.expand(1, -1).cuda()
+        token_part1_ids = token_part1.input_ids.expand(1, -1).to(device)
         token_part2 = model.tokenizer(
             text_part2, return_tensors="pt", add_special_tokens=False
         )
-        token_part2_ids = token_part2.input_ids.expand(1, -1).cuda()
+        token_part2_ids = token_part2.input_ids.expand(1, -1).to(device)
         token_part3 = model.tokenizer(
             text_part3, return_tensors="pt", add_special_tokens=False
         )
-        token_part3_ids = token_part3.input_ids.expand(1, -1).cuda()
+        token_part3_ids = token_part3.input_ids.expand(1, -1).to(device)
 
         embed_part0 = model.llm.model.model.embed_tokens(token_part0_ids)
         embed_part1 = model.llm.model.model.embed_tokens(token_part1_ids)

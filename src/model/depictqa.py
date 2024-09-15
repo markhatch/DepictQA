@@ -34,7 +34,7 @@ class DepictQA(nn.Module):
         self.unique_tag = args.model.get("unique_tag", True)
 
         vision_encoder_path = args.model["vision_encoder_path"]
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         logging.info(f"Initializing vision encoder from {vision_encoder_path} ...")
         self.vision_feature_type = args.model["vision_feature_type"]
         clip_encoder, self.vision_preprocess = load_clip(
@@ -81,7 +81,7 @@ class DepictQA(nn.Module):
         logging.info("Vision projection layer initialized.")
 
         self.max_tokens = args.train.get("max_tokens", 512)
-        self.device = torch.cuda.current_device()
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     def emb_img(self, img_paths):
         if img_paths[0] is None:
